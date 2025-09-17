@@ -103,6 +103,22 @@ public interface DynamicArrayADT<J>{
      */
     DynamicArrayADT<J> extract(int fromIndex, int toIndex);
 
+    /**
+     * Returns the elements from index to the end, removing them from this array.
+     * @param index the split position
+     * @return a new DynamicArray containing the suffix
+     * @throws IndexOutOfBoundsException if index is invalid
+     */
+    DynamicArrayADT<J> splitSuffix(int index);
+
+    /**
+     * Returns the elements before index, removing them from this array.
+     * @param index the split position
+     * @return a new DynamicArray containing the prefix
+     * @throws IndexOutOfBoundsException if index is invalid
+     */
+    DynamicArrayADT<J> splitPrefix(int index);
+
     //Kudos-Group 4
 
     /**

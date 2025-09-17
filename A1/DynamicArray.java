@@ -165,6 +165,23 @@ public class DynamicArray<J> implements DynamicArrayADT<J> {
         }
         return newArray;
     }
+    // @Override
+    // public DynamicArrayADT<J> delete(int fromIndex, int toIndex) {
+    //     if (fromIndex < 0 || toIndex > size || fromIndex > toIndex) {
+    //         throw new IndexOutOfBoundsException();
+    //     }
+    //     DynamicArray<J> result = new DynamicArray<>(size - (toIndex - fromIndex));
+    //     // copy elements before fromIndex
+    //     for (int i = 0; i < fromIndex; i++) {
+    //         result.add(data[i]);
+    //     }
+    //     // skip [fromIndex, toIndex)
+    //     for (int i = toIndex; i < size; i++) {
+    //         result.add(data[i]);
+    //     }
+    //     return result;
+    // }
+
 
     /**
      * Returns the number of elements currently stored in the array.
@@ -262,6 +279,18 @@ public class DynamicArray<J> implements DynamicArrayADT<J> {
         size -= numToRemove;
         return newArray;
     }
+    // @Override
+    // public DynamicArrayADT<J> extract(int fromIndex, int toIndex) {
+    //     if (fromIndex < 0 || toIndex > size || fromIndex > toIndex) {
+    //         throw new IndexOutOfBoundsException();
+    //     }
+    //     DynamicArray<J> result = new DynamicArray<>(toIndex - fromIndex);
+    //     for (int i = fromIndex; i < toIndex; i++) {
+    //         result.add(data[i]);
+    //     }
+    //     return result;
+    // }
+
 
     
     /**

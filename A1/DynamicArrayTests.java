@@ -164,7 +164,7 @@ public class DynamicArrayTests {
     }
 
     @Test 
-    public void testConstructorInitialSize(){
+    public void testConstructorSize(){
         DynamicArray<Integer> arr = new DynamicArray<Integer>(10);
         assertEquals(0, arr.size());
     }
@@ -200,7 +200,11 @@ public class DynamicArrayTests {
 
         DynamicArray<String> combined = arr1.append(arr2);
         assertEquals(4, combined.size());
-        assertEquals("yur", combined.get(0)); 
+        assertEquals("hi", combined.get(0));
+        assertEquals("bye", combined.get(1));
+        assertEquals("soul", combined.get(2));
+        assertEquals("mate", combined.get(3));
+ 
     }
 
     @Test 
@@ -213,7 +217,7 @@ public class DynamicArrayTests {
         arr2.add("soul");
         arr2.add("mate");
 
-        arr1.insert(arr2, 1); // array is now [hi, soul, mate, bye]
+        arr1.insert(1, arr2); // array is now [hi, soul, mate, bye]
         assertEquals(4, arr1.size());
         assertEquals("soul", arr1.get(1));
         assertEquals("mate", arr1.get(2));
@@ -261,7 +265,98 @@ public class DynamicArrayTests {
         assertEquals("is", ext.get(1));
         assertEquals(4, arr.size()); // original array should stay the same 
     }
-    
+
+    @Test
+    public void testSplitSuffix() {
+        DynamicArray<String> arr = new DynamicArray<>(6);
+        arr.add("a");
+        arr.add("b");
+        arr.add("c");
+        arr.add("d");
+        arr.add("e");
+        arr.add("f");
+
+        DynamicArray<String> suffix = arr.splitSuffix(3);
+        assertEquals(3, suffix.size());
+        assertEquals("d", suffix.get(0));
+        assertEquals("e", suffix.get(1));
+        assertEquals("f", suffix.get(2));
+
+        assertEquals(3, arr.size());
+        assertEquals("a", arr.get(0));
+        assertEquals("b", arr.get(1));
+        assertEquals("c", arr.get(2));
+    }
+
+    @Test
+    public void testSplitPrefix() {
+        DynamicArray<String> arr = new DynamicArray<>(6);
+        arr.add("a");
+        arr.add("b");
+        arr.add("c");
+        arr.add("d");
+        arr.add("e");
+        arr.add("f");
+
+        DynamicArray<String> prefix = arr.splitPrefix(3);
+        assertEquals(3, prefix.size());
+        assertEquals("a", prefix.get(0));
+        assertEquals("b", prefix.get(1));
+        assertEquals("c", prefix.get(2));
+
+        assertEquals(3, arr.size());
+        assertEquals("d", arr.get(0));
+        assertEquals("e", arr.get(1));
+        assertEquals("f", arr.get(2));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testSplitSuffixNegativeIndex() {
+        DynamicArray<String> arr = new DynamicArray<>(3);
+        arr.add("x");
+        arr.splitSuffix(-1); // should throw
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testSplitSuffixTooLargeIndex() {
+        DynamicArray<String> arr = new DynamicArray<>(3);
+        arr.add("x");
+        arr.splitSuffix(arr.size() + 1); // should throw
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testSplitPrefixNegativeIndex() {
+        DynamicArray<String> arr = new DynamicArray<>(3);
+        arr.add("x");
+        arr.splitPrefix(-1); // should throw
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testSplitPrefixTooLargeIndex() {
+        DynamicArray<String> arr = new DynamicArray<>(3);
+        arr.add("x");
+        arr.splitPrefix(arr.size() + 1); // should throw
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testInsertNegativeIndex() {
+        DynamicArray<String> arr1 = new DynamicArray<>(2);
+        arr1.add("a");
+        DynamicArray<String> arr2 = new DynamicArray<>(2);
+        arr2.add("b");
+        arr1.insert(-1, arr2); // should throw
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testInsertTooLargeIndex() {
+        DynamicArray<String> arr1 = new DynamicArray<>(2);
+        arr1.add("a");
+        DynamicArray<String> arr2 = new DynamicArray<>(2);
+        arr2.add("b");
+        arr1.insert(arr1.size() + 1, arr2); // should throw
+    }
+
+
 
     //Group 4 tests
 
