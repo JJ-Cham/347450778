@@ -217,7 +217,7 @@ public class DynamicArray<J> implements DynamicArrayADT<J> {
      * @throws IndexOutOfBoundsException if the index is out of range where it's lees than zero or greater than the size of the array.
      */
     @Override
-    public DynamicArrayADT<J> insert(int index, DynamicArrayADT<J> other) {
+    public DynamicArray<J> insert(int index, DynamicArrayADT<J> other) {
         if (index < 0 || index > this.size()) {
             throw new IndexOutOfBoundsException("Index: " + index);
         }
